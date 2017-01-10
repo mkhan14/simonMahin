@@ -1,8 +1,77 @@
 package simon;
 
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-public class Progress implements ProgressInterfaceMahin {
+import guiPractice.components.Component;
+
+public class Progress extends Component implements ProgressInterfaceMahin 
+{
+	
+
+
+	private static final int WIDTH = 120;
+	private static final int HEIGHT = 50;
+
+	private boolean gameOver;
+	private String round;
+	private String sequence;
+	public Progress(int x, int y, int w, int h) 
+	{
+		super(60, 60, WIDTH, HEIGHT);
+	}
+	@Override
+	public int getX() 
+	{
+		return 0;
+	}
+
+	@Override
+	public int getY() 
+	{
+		return 0;
+	}
+
+	@Override
+	public int getWidth() 
+	{
+		
+		return 0;
+	}
+
+	@Override
+	public int getHeight() 
+	{
+		return 0;
+	}
+
+	@Override
+	public boolean isAnimated() 
+	{
+		return false;
+	}
+	
+	@Override
+	public void setRound(int roundNumber) 
+	{
+		round = "Round " + roundNumber;
+		update();
+	}
+
+	@Override
+	public void gameOver() 
+	{
+		gameOver = true;
+		update();
+	}
+
+	@Override
+	public void setSequenceSize(int size) 
+	{
+		sequence = "Sequence length " + size;
+		update();
+	}
+
 
 	@Override
 	public BufferedImage getImage() {
@@ -11,55 +80,7 @@ public class Progress implements ProgressInterfaceMahin {
 	}
 
 	@Override
-	public int getX() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getY() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getWidth() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getHeight() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public boolean isAnimated() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void setRound(int roundNumber) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void gameOver() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setSequenceSize(int size) {
+	public void update(Graphics2D arg0) {
 		// TODO Auto-generated method stub
 		
 	}
