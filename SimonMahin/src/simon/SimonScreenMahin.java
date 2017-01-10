@@ -14,7 +14,8 @@ public class SimonScreenMahin extends ClickableScreen implements Runnable {
 	private ArrayList<MoveInterfaceMahin> sequence;
 	private ProgressInterfaceMahin progress;
 	private TextLabel label;
-	private ButtonInterfaceMahin[] buttons;
+	private ButtonInterfaceMahin[] buttons = new ButtonInterfaceMahin[6];
+	private int btn[] = new int[6];
 	 
 	private int roundNumber;
 	private boolean acceptingInput;
@@ -54,18 +55,18 @@ public class SimonScreenMahin extends ClickableScreen implements Runnable {
 	
 	private MoveInterfaceMahin randomMove() {
 		ButtonInterfaceMahin b;
-		int selection = (int) (Math.random()*buttons.length);
+		int selection = (int) (Math.random()*btn.length);
 		while(selection == lastSelectedButton){
-			selection = (int)(Math.random()*buttons.length);
+			selection = (int)(Math.random()*btn.length);
 		}
-		b = buttons[selection];
+		b = btn[selection];
 		lastSelectedButton = selection;
 		return getMove(b);
 	}
 
 	private MoveInterfaceMahin getMove(ButtonInterfaceMahin b) {
 		// TODO Auto-generated method stub
-		return null;
+		return new Move(b);
 	}
 
 	/**
@@ -73,7 +74,7 @@ public class SimonScreenMahin extends ClickableScreen implements Runnable {
 	*/
 	private ProgressInterfaceMahin getProgress() {
 		// TODO Auto-generated method stub
-		return null;
+		return new Progress();
 	}
 	
 	public void nextRound() {
@@ -161,7 +162,7 @@ public class SimonScreenMahin extends ClickableScreen implements Runnable {
 	}
 
 	private ButtonInterfaceMahin getAButton() {
-		return null;
+		return new ButtonMahin();
 		
 	}
 

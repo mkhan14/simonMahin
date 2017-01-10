@@ -16,7 +16,7 @@ public class Progress extends Component implements ProgressInterfaceMahin
 	private boolean gameOver;
 	private String round;
 	private String sequence;
-	public Progress(int x, int y, int w, int h) 
+	public Progress() 
 	{
 		super(60, 60, WIDTH, HEIGHT);
 	}
