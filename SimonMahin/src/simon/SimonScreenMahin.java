@@ -59,7 +59,8 @@ public class SimonScreenMahin extends ClickableScreen implements Runnable {
 			selection = (int)(Math.random()*buttons.length);
 		}
 		lastSelectedButton = selection;
-		return new Move(buttons[selection]);
+		//return new Move(buttons[selection]);
+		return getMove(buttons[selection]);
 	}
 
 	private MoveInterfaceMahin getMove(ButtonInterfaceMahin b) {
@@ -126,6 +127,7 @@ public class SimonScreenMahin extends ClickableScreen implements Runnable {
 			buttons[i].setX(160 + (int)(100*Math.cos(i*2*Math.PI/(numberOfButtons))));
 			buttons[i].setY(200 - (int)(100*Math.sin(i*2*Math.PI/(numberOfButtons))));
 			final ButtonInterfaceMahin b = buttons[i];
+			b.dim();
 			buttons[i].setAction(new Action(){
 				public void act(){
 					if(acceptingInput){
@@ -135,10 +137,11 @@ public class SimonScreenMahin extends ClickableScreen implements Runnable {
 					        	b.highlight();
 					        	try{
 					        		Thread.sleep(800);
-					        		b.dim();
+					        		//b.dim();
 					        	}catch(InterruptedException e){
 					        		e.printStackTrace();
 					        	}
+					        	b.dim();
 					        }
 
 
@@ -148,6 +151,8 @@ public class SimonScreenMahin extends ClickableScreen implements Runnable {
 					    	sequenceIndex++;
 					    }else{
 					    	progress.gameOver();
+					    	acceptingInput = false;
+					    	return;
 					    }
 					    if(sequenceIndex == sequence.size()){
 					    	Thread nextRound = new Thread(SimonScreenMahin.this);
