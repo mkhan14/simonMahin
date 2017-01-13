@@ -14,7 +14,7 @@ public class SimonScreenMahin extends ClickableScreen implements Runnable {
 	private ArrayList<MoveInterfaceMahin> sequence;
 	private ProgressInterfaceMahin progress;
 	private TextLabel label;
-	private ButtonInterfaceMahin[] buttons = new ButtonInterfaceMahin[6];
+	private ButtonInterfaceMahin[] buttons;
 	private int btn[] = new int[6];
 	 
 	private int roundNumber;
@@ -32,7 +32,7 @@ public class SimonScreenMahin extends ClickableScreen implements Runnable {
 
 	@Override
 	public void run() {
-		changeText("");
+		label.setText("");
 		nextRound();
 	}
 
@@ -54,14 +54,12 @@ public class SimonScreenMahin extends ClickableScreen implements Runnable {
 	
 	
 	private MoveInterfaceMahin randomMove() {
-		ButtonInterfaceMahin b;
-		int selection = (int) (Math.random()*btn.length);
+		int selection = (int) (Math.random()*buttons.length);
 		while(selection == lastSelectedButton){
-			selection = (int)(Math.random()*btn.length);
+			selection = (int)(Math.random()*buttons.length);
 		}
-		b = btn[selection];
 		lastSelectedButton = selection;
-		return getMove(b);
+		return new Move(buttons[selection]);
 	}
 
 	private MoveInterfaceMahin getMove(ButtonInterfaceMahin b) {
@@ -112,7 +110,7 @@ public class SimonScreenMahin extends ClickableScreen implements Runnable {
 		try{
 			label.setText(string);
 			Thread.sleep(1000);
-		}catch(Exception e){
+		}catch(InterruptedException e){
 			e.printStackTrace();
 		}
 	
@@ -121,12 +119,14 @@ public class SimonScreenMahin extends ClickableScreen implements Runnable {
 	private void addButtons() {
 		int numberOfButtons = 6;
 		Color[] colors = {Color.red, Color.blue, new Color(240,160,70), new Color(20,255,140), Color.yellow, new Color(180,90,210)};
+		buttons = new ButtonInterfaceMahin[numberOfButtons];
 		for(int i = 0; i < numberOfButtons; i++){
-			final ButtonInterfaceMahin b = getAButton();
-			b.setColor(colors[i]);
-			b.setX(160 + (int)(100*Math.cos(i*2*Math.PI/(numberOfButtons))));
-			b.setY(200 - (int)(100*Math.sin(i*2*Math.PI/(numberOfButtons))));
-			b.setAction(new Action(){
+			buttons[i] = getAButton();
+			buttons[i].setColor(colors[i]);
+			buttons[i].setX(160 + (int)(100*Math.cos(i*2*Math.PI/(numberOfButtons))));
+			buttons[i].setY(200 - (int)(100*Math.sin(i*2*Math.PI/(numberOfButtons))));
+			final ButtonInterfaceMahin b = buttons[i];
+			buttons[i].setAction(new Action(){
 				public void act(){
 					if(acceptingInput){
 					    Thread blink = new Thread(new Runnable(){

@@ -1,13 +1,12 @@
 package simon;
 
 import guiPractice.GUIApplication;
-import whackAMole.WhackAMoleGame;
-import whackAMole.WhackAMoleScreen;
 
 public class SimonGameMahin extends GUIApplication {
 
 	public SimonGameMahin() {
 		// TODO Auto-generated constructor stub
+		super();
 	}
 
 	@Override
