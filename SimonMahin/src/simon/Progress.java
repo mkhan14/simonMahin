@@ -10,9 +10,6 @@ import guiPractice.components.Component;
 
 public class Progress extends Component implements ProgressInterfaceMahin 
 {
-	
-
-
 	private static final int WIDTH = 120;
 	private static final int HEIGHT = 50;
 
@@ -23,7 +20,7 @@ public class Progress extends Component implements ProgressInterfaceMahin
 	{
 		super(60, 60, WIDTH, HEIGHT);
 	}
-	@Override
+	/*@Override
 	public int getX() 
 	{
 		return 0;
@@ -52,7 +49,7 @@ public class Progress extends Component implements ProgressInterfaceMahin
 	public boolean isAnimated() 
 	{
 		return false;
-	}
+	}*/
 	
 	@Override
 	public void setRound(int roundNumber) 
@@ -87,9 +84,9 @@ public class Progress extends Component implements ProgressInterfaceMahin
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		FontMetrics fm = g.getFontMetrics();
 		if(gameOver){
-			g.setColor(new Color(255,55,90));
+			g.setColor(Color.green);
 			g.fillRect(0, 0, WIDTH, HEIGHT);
-			g.setColor(Color.white);
+			g.setColor(Color.black);
 			String go = "GAME OVER!";
 			g.drawString(go, (WIDTH - fm.stringWidth(go))/2, 20);
 			g.drawString(sequence, (WIDTH - fm.stringWidth(sequence))/2, 40);

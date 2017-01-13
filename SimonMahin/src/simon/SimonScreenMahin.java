@@ -119,13 +119,13 @@ public class SimonScreenMahin extends ClickableScreen implements Runnable {
 
 	private void addButtons() {
 		int numberOfButtons = 6;
-		Color[] colors = {Color.red, Color.blue, new Color(240,160,70), new Color(20,255,140), Color.yellow, new Color(180,90,210)};
+		Color[] colors = {Color.red, Color.blue, Color.orange, new Color(20,255,140), Color.yellow, new Color(180,90,210)};
 		buttons = new ButtonInterfaceMahin[numberOfButtons];
 		for(int i = 0; i < numberOfButtons; i++){
 			buttons[i] = getAButton();
 			buttons[i].setColor(colors[i]);
-			buttons[i].setX(160 + (int)(100*Math.cos(i*2*Math.PI/(numberOfButtons))));
-			buttons[i].setY(200 - (int)(100*Math.sin(i*2*Math.PI/(numberOfButtons))));
+			buttons[i].setX(60+70*i);
+			buttons[i].setY(190);
 			final ButtonInterfaceMahin b = buttons[i];
 			b.dim();
 			buttons[i].setAction(new Action(){
@@ -150,7 +150,7 @@ public class SimonScreenMahin extends ClickableScreen implements Runnable {
 					    if(b == sequence.get(sequenceIndex).getButton()){
 					    	sequenceIndex++;
 					    }else{
-					    	progress.gameOver();
+					    	gameOver();
 					    	acceptingInput = false;
 					    	return;
 					    }
@@ -164,6 +164,10 @@ public class SimonScreenMahin extends ClickableScreen implements Runnable {
 			viewObjects.add(b);
 		}
 		
+	}
+	
+	public void gameOver(){
+		progress.gameOver();
 	}
 
 	private ButtonInterfaceMahin getAButton() {

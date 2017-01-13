@@ -71,6 +71,10 @@ public class ButtonMahin extends Component implements ButtonInterfaceMahin
 	{
 		this.name = s;
 	}
+	
+	public String toString(){
+		return name;
+	}
 
 	@Override
 	public void update(Graphics2D g) 
